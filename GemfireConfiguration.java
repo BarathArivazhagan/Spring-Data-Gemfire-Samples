@@ -21,7 +21,7 @@ public class GemfireConfiguration {
 	        gemfireProperties.setProperty("name", "SpringDataGemfireLocalSample");
 	        gemfireProperties.setProperty("mcast-port", "0");
 	        gemfireProperties.setProperty("log-level", "config");
-	        gemfireProperties.setProperty("locators", "192.168.1.35[10334]");
+	       
 	        return gemfireProperties;
 	    }
 	
