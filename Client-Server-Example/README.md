@@ -20,7 +20,7 @@ create region --name=BOOK --type=REPLICATE
 
 Step4: Download Spring-Gemfire-BookStore1 and Spring-Gemfire-BookStore2 projects and import into IDE and run as Spring boot App
 
-BookStore1 and BookStore2 are two Gemfire Cache Clients connecting to the Gemfire Locator[testlocator] running in 192.168.1.39[10334] 
+BookStore1 and BookStore2 are two Gemfire Cache Clients connecting to the Gemfire Locator[testlocator] running in localhost[10334] 
 
 Step5: Following endpoints are exposed to perform basic CRUD operations:
 
