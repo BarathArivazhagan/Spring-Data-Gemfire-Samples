@@ -63,6 +63,13 @@ public class MovieService {
 		
 		return movieRep.findByMovieName(movieName);
 	}
+	
+	public List<Movie> findAllMovies(){
+		List<Movie> movies=new ArrayList<Movie>();
+		 movieRep.findAll().forEach(movies::add);
+		 movies.stream().forEach(System.out::println);
+		 return movies;
+	}
 
 	
 	
