@@ -8,9 +8,9 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 @SpringBootApplication
 //@EnableGemfireRepositories
 //@ImportResource("classpath:client-cache.xml")
-public class SpringGemfireBookStore1Application {
+public class SpringGemfireBookStore2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringGemfireBookStore1Application.class, args);
+		SpringApplication.run(SpringGemfireBookStore2Application.class, args);
 	}
 }
