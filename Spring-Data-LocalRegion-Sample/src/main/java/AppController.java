@@ -49,6 +49,11 @@ public class AppController {
 		return "Movie is updated successfully";
 	}
 	
+	@RequestMapping("findAll")
+	public List<Movie> findAllMovies(){		
+		
+		return movieService.findAllMovies();
+	}
 	@ExceptionHandler(Exception.class)
 	public String handleeError(Exception ex){
 		return ex.getMessage();
