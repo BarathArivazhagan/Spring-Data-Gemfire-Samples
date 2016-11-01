@@ -29,7 +29,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			
-			url: "../../CITI/service",
+			url: "../../demo/service",
 			method: "GET",
 			beforeSend: function(jqXHR){
 				
@@ -95,7 +95,7 @@ String sessionToken=map.get("x-auth-token"); */
 %>
 <script>
 
-var url="http://localhost:8083/CITI/newSession";
+var url="http://localhost:8083/demo/newSession";
 var sessionId="<%=sessionId%>";
 </script>
 <div>
@@ -133,7 +133,7 @@ var sessionId="<%=sessionId%>";
 <div>
 
 <span>Click here to close this session </span>
-	<span><a href="/CITI/logout">LOG OUT</a></span>
+	<span><a href="/demo/logout">LOG OUT</a></span>
 
 </div>
 	<div>
