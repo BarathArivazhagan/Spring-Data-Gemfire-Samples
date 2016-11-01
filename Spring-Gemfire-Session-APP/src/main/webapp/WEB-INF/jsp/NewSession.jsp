@@ -50,7 +50,7 @@ boolean isExpired=System.currentTimeMillis()-TimeUnit.SECONDS.toMillis(request.g
 %>
 <script>
 
-var url="http://localhost:8083/CITI/newSession";
+var url="http://localhost:8083/demo/newSession";
 </script>
 <div>
 	<div>
@@ -81,7 +81,7 @@ var url="http://localhost:8083/CITI/newSession";
 <div>
 
 <span>Click here to close this session </span>
-	<span><a href="/CITI/logout">LOG OUT</a></span>
+	<span><a href="/demo/logout">LOG OUT</a></span>
 
 </div>
 <div>
