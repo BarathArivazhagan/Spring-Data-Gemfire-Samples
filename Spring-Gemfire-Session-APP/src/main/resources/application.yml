@@ -1,6 +1,6 @@
 server:
     port: 8083
-    context-path: /CITI 
+    context-path: /APP
    
 
 spring:
