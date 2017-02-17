@@ -43,4 +43,4 @@ JAVA8   -->entry made by BookStore2
 
 
 
-
+This app uses Client server topology 
