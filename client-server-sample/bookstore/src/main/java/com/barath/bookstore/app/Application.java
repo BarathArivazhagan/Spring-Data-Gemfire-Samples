@@ -12,9 +12,9 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 @EnableEntityDefinedRegions(basePackageClasses = Book.class,
 clientRegionShortcut = ClientRegionShortcut.PROXY)
 @EnableGemfireRepositories
-public class SpringGemfireBookStore1Application {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringGemfireBookStore1Application.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
