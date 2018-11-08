@@ -1,0 +1,19 @@
+
+[info 2018/11/08 22:27:08.236 IST <restartedMain> tid=0xf] Log opened with new distributed system connection.  View(creator=192.168.1.7(embedded-gemfire-server:48789)<v0>:63440, viewId=0, [192.168.1.7(embedded-gemfire-server:48789)<v0>:63440])
+
+[info 2018/11/08 22:27:10.372 IST <restartedMain> tid=0xf] server summary: 1 cache servers with 0 client connections/current cache servers : 192.168.1.7(embedded-gemfire-server:48789)<v0>:63440 
+
+[info 2018/11/08 22:40:04.805 IST <restartedMain> tid=0xf] Log opened with new distributed system connection.  View[192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024|0] members: [192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024{lead}]
+
+[info 2018/11/08 22:41:01.808 IST <Cache Server Load Polling Thread> tid=0x4b] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024 
+
+[info 2018/11/08 22:59:34.275 IST <restartedMain> tid=0x70] Log opened with new distributed system connection.  View[192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024|0] members: [192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024{lead}]
+
+[info 2018/11/08 23:00:30.417 IST <Cache Server Load Polling Thread> tid=0xa9] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.1.7(embedded-gemfire-server:48929)<ec><v0>:1024 
+
+[info 2018/11/08 23:12:48.870 IST <restartedMain> tid=0xf] Log opened with new distributed system connection.  View[192.168.1.7(embedded-gemfire-server:49312)<ec><v0>:1024|0] members: [192.168.1.7(embedded-gemfire-server:49312)<ec><v0>:1024{lead}]
+
+[info 2018/11/08 23:13:46.086 IST <Cache Server Load Polling Thread> tid=0x50] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.1.7(embedded-gemfire-server:49312)<ec><v0>:1024 
