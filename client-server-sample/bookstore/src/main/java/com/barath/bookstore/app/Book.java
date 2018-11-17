@@ -11,9 +11,6 @@ import org.springframework.data.gemfire.mapping.annotation.ClientRegion;
 @ClientRegion("BOOKS")
 public class Book implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1768249225099651970L;
 
 	@Id

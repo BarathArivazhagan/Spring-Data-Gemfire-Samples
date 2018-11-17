@@ -1,9 +1,14 @@
 package com.barath.bookstore.app;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.IntStream;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
@@ -14,13 +19,19 @@ import org.apache.geode.cache.query.QueryInvocationTargetException;
 import org.apache.geode.cache.query.QueryService;
 import org.apache.geode.cache.query.SelectResults;
 import org.apache.geode.cache.query.TypeMismatchException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
+import com.barath.bookstore.app.exception.BookNotFoundException;
 
 
 
 @Service
 public class BookService {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	
 	private final Region<String, String> bookRegion; 
 	
@@ -39,39 +50,29 @@ public class BookService {
 	}
 	
 	public Book addBook(Book book){
+		
+		if(logger.isInfoEnabled()) { logger.info("adding a book with details {}", Objects.toString(book)); }
 		return this.bookRepository.save(book);
 	}
 	
 	public Book getBook(String bookId){
-		Book book=null;
-		//if(isBookExists(bookId)){
-			String bookName=bookRegion.get(bookId);
-			if(!StringUtils.isEmpty(bookName)){
-				book=new Book(bookId, bookName);
-			}
-			System.out.println(book.toString());
-		//}
-		
-		return book;
+		return this.bookRepository.findById(bookId)				
+				.orElseThrow( () ->  new BookNotFoundException(String.format("Book not found with id %s", bookId)));
 	}
 
-	public void updateBook(Book book){
-		//if(isBookExists(book)){
-			Book bookFound=getBook(book.getBookId());
-			bookFound.setBookId(book.getBookId());
-			bookFound.setBookName(book.getBookName());
-			bookRegion.put(bookFound.getBookId(),bookFound.getBookName());
-		//}
+	public Book updateBook(Book book){
+		
+		return this.bookRepository.save(book);
 	}
 	public void deleteBook(String bookId){
-		if(isBookExists(bookId)){
-			bookRegion.remove(bookId) ;
-		}
+		
+		if(logger.isInfoEnabled()) { logger.info("deleting a book with bookId {}", Objects.toString(bookId)); }
+		this.bookRepository.deleteById(bookId);
+	
 	}
 	public void deleteBook(Book book){
-		if(isBookExists(book)){
-			bookRegion.remove(book) ;
-		}
+		if(logger.isInfoEnabled()) { logger.info("deleting a book with book {}", Objects.toString(book)); }
+		this.bookRepository.delete(book);
 	}
 	
 	public boolean isBookExists(String bookId){
@@ -85,17 +86,13 @@ public class BookService {
 		return false;
 	}
 
-//	public Book getBook(String bookName) {
-//		
-//		if(!StringUtils.isEmpty(bookName)){
-//			return this.findByBookName(bookName);
-//		}
-//		return null;
-//	}
-//	
-//	private Book findByBookName(String bookName) {
-//		if(isBookExists(book))
-//	}
+	public Book getBookByName(String bookName) {
+		
+		if(logger.isInfoEnabled()) { logger.info("get a book with book name{}", bookName); }
+		
+		return this.bookRepository.findByBookName(bookName);
+	}
+
 
 	public Map<String, String> getAllBooks(Collection<String> keys) {
 			
@@ -108,17 +105,35 @@ public class BookService {
 		 return books;
 	}
 	
+	public List<Book> getBooks() {
+		
+		if(logger.isInfoEnabled()) { logger.info("getting all the books from books region"); }
+		return this.bookRepository.findAll();
+	}
+	
 	public List<String> getAllBookNames() throws FunctionDomainException, TypeMismatchException, NameResolutionException, QueryInvocationTargetException {
 			
 			
 		QueryService queryService = this.clientCache.getQueryService();	
 		Query query = queryService.newQuery(SELECT_QUERYSTRING);			
 		SelectResults<Object> results = (SelectResults<Object>)query.execute();
-		System.out.println("Results "+results);
-		System.out.println("SIZE "+results.size());	
+		logger.info("Results {}",results);
+		logger.info("SIZE {}",results.size());	
 		List<String> bookNames=new ArrayList<String>(results.size());
 		results.stream().forEach(System.out::println);
 		 return bookNames;
+	}
+	
+	@PostConstruct
+	public void init() {
+
+		IntStream
+		.range(0, 100)
+		.forEachOrdered( value -> {
+			
+			Book book = new Book(String.valueOf(value), "Book"+value);
+			this.bookRepository.save(book);
+		});
 	}
 
 }
