@@ -3,6 +3,7 @@ package com.barath.bookstore.app;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
@@ -11,6 +12,7 @@ import org.apache.geode.cache.query.NameResolutionException;
 import org.apache.geode.cache.query.QueryInvocationTargetException;
 import org.apache.geode.cache.query.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,11 @@ public class BookController {
 	public BookController( BookService bookService) {
 		super();		
 		this.bookService = bookService;
+	}
+	
+	@GetMapping
+	public List<Book> books(){
+		return this.bookService.getBooks();
 	}
 
 	@GetMapping("/test")
@@ -58,10 +65,9 @@ public class BookController {
 	}
 	
 	@GetMapping("/byId/{bookId}")
-	public Book addBook(@PathVariable("bookId") String bookId){
+	public Book getBookById(@PathVariable("bookId") @NotEmpty String bookId){		
 		
-		
-		return bookService.getBook(bookId);
-		
+			return bookService.getBook(bookId);
+			
 	}
 }
